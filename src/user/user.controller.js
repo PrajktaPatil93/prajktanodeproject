@@ -18,3 +18,25 @@ res.status(200).send({sucess:true,data:"studnetdata prajkta"});
     console.log("try catch error",error);
 }
 }
+
+exports.getStudentDetail=(req,res)=>{
+//     .limit(10);
+// .skip((page - 1) * limit)
+  registeredStudentModel.default.find({ name: "prajkta"}, function(err, resp){
+    console.log("studentdetail",resp);
+    res.status(200).send({data:resp});
+
+   });
+
+}
+
+exports.updateStudentDetail=(req,res)=>{
+   
+    const condition={contact : req.body.contact}
+      registeredStudentModel.default.findOneAndUpdate({ name: req.body.name}, { $set: condition }, { new: true }, function(err, resp){
+        console.log("studentdetail",resp);
+        res.status(200).send({data:"record updated"});
+    
+    });
+    
+}
